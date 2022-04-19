@@ -6,3 +6,6 @@ print('Testing')
 
 print("Printthis")
 print('hello is this still working')
+
+name = "jacob"
+print(name)
