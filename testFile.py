@@ -5,5 +5,5 @@ nameVal = 1;
 if (nameVal == 1):
   print("Michael")
 
-if(nameVal == 1):
+elif(nameVal == 2):
   print("Jacob2")
