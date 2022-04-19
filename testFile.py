@@ -6,5 +6,3 @@ nameVal2 = 2
 if (nameVal == 1):
   print("Michael")
 
-if(nameVal2 == 2):
-  print("Jacob")

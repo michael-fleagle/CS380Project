@@ -6,7 +6,3 @@ print('Testing')
 
 print("Printthis")
 print('hello is this still working')
-
-print("this is Jacob")
-
-print("This is a test")
