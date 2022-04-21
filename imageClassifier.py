@@ -6,4 +6,3 @@ import numpy as np
 import tensorflow
 
 
-#This works, I have finally gotten everything to work with anaconda using the method described by Kyah
