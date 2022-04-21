@@ -2,10 +2,6 @@
 
 #This is an initial test file for testing the gitLive code sharing application
 
-print('Testing')
+import numpy as np
+from tensorflow import keras
 
-print("Printthis")
-print('hello is this still working')
-
-name = "jacob"
-print(name)
