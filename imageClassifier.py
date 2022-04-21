@@ -3,5 +3,7 @@
 #This is an initial test file for testing the gitLive code sharing application
 
 import numpy as np
-from tensorflow import keras
+import keras
+
+import to_categorical
 
