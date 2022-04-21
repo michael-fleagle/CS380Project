@@ -4,6 +4,3 @@
 
 import numpy as np
 import keras
-
-import to_categorical
-
