@@ -71,3 +71,6 @@ for i, imgPath in enumerate(mergeList):
     
 # display the plot
 plt.show()
+
+
+# Testing fix to git
