@@ -10,7 +10,8 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 
 # create a path to data directory
-img_dir = "\archive"
+img_dir = "\archive" # Should this be "\\archive"? 
+# I believe that only having one backslash causes the a to interpret it as a special character
 
 # train animal directory
 # must be changed for each user
