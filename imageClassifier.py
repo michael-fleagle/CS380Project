@@ -52,7 +52,6 @@ mergeList = catPic + notCatPic
 # Plot the images
 for i, imgPath in enumerate(mergeList):
     #get filename
-    # data = imgPath.split('/', 6)[6] #### <--- This is dependent on the directory path, so it will change each time
     data = imgPath.split('/')
     data = data[len(data)-1]
 
