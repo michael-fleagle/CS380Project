@@ -10,22 +10,18 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 
 # create a path to data directory
-img_dir = "\\archive"
+# must be changed for each user
+img_dir = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal"
 
 # train animal directory
-# must be changed for each user
-train_cat = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\cat"
-train_dog = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\dog"
-train_eleph = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\ELEPHANT"
-train_horse = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\HORSE"
-train_lion = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\LION"
+train_dir = os.path.join(img_dir, "train")
 
 # Use os to create a proper file path
-trainCatDir = os.path.join(train_cat)
-trainDogDir = os.path.join(train_dog)
-trainElDir = os.path.join(train_eleph)
-trainHorDir = os.path.join(train_horse)
-trainLioDir = os.path.join(train_lion)
+trainCatDir = os.path.join(train_dir, "cat")
+trainDogDir = os.path.join(train_dir, "dog")
+trainElDir = os.path.join(train_dir, "elephant")
+trainHorDir = os.path.join(train_dir, "horse")
+trainLioDir = os.path.join(train_dir, "lion")
 
 # Create list of image names from directory
 trainCatNames = os.listdir(trainCatDir)
