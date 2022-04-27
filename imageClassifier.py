@@ -10,15 +10,15 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 
 # create a path to data directory
-img_dir = "\archive"
+img_dir = "\\archive"
 
 # train animal directory
 # must be changed for each user
-train_cat = "I:/CS 380/Project/CS380Project/archive/Animal/train/cat"
-train_dog = "I:/CS 380/Project/CS380Project/archive/Animal/train/dog"
-train_eleph = "I:/CS 380/Project/CS380Project/archive/Animal/train/ELEPHANT"
-train_horse = "I:/CS 380/Project/CS380Project/archive/Animal/train/HORSE"
-train_lion = "I:/CS 380/Project/CS380Project/archive/Animal/train/LION"
+train_cat = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\cat"
+train_dog = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\dog"
+train_eleph = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\ELEPHANT"
+train_horse = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\HORSE"
+train_lion = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal\\train\\LION"
 
 # Use os to create a proper file path
 trainCatDir = os.path.join(train_cat)
@@ -52,7 +52,7 @@ mergeList = catPic + notCatPic
 # Plot the images
 for i, imgPath in enumerate(mergeList):
     #get filename
-    data = imgPath.split('/')
+    data = imgPath.split('\\')
     data = data[len(data)-1]
 
     #create subplot of images with rows and cols
