@@ -3,5 +3,17 @@
 
 # Import all files
 import userInterface
-import imageClassifier
+# import imageClassifier
 
+from PyQt5.QtWidgets import QApplication
+import sys
+
+def winCreate():
+    app = QApplication(sys.argv)
+    # Create Window
+    win = userInterface.LandingPage()
+    win.show()
+
+    sys.exit(app.exec_())
+    
+winCreate()
