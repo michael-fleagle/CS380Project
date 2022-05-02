@@ -68,3 +68,50 @@ for i, imgPath in enumerate(mergeList):
     
 # display the plot
 plt.show()
+
+# Data Preprocessing and Augmentation
+# Generate training, testing and validation batches
+dgen_train = ImageDataGenerator(rescale=1./255,
+                                validation_split=0.2,  # using 20% of training data for validation 
+                                zoom_range=0.2,
+                                horizontal_flip=True)
+dgen_validation = ImageDataGenerator(rescale=1./255)
+dgen_test = ImageDataGenerator(rescale=1./255)
+
+TARGET_SIZE = (200, 200)
+BATCH_SIZE = 32
+CLASS_MODE = 'binary'
+
+# Connecting the ImageDataGenerator objects to our dataset
+train_generator = dgen_train.flow_from_directory(train_dir,
+                                                 target_size=TARGET_SIZE,
+                                                 subset='training',
+                                                 batch_size=BATCH_SIZE,
+                                                 class_mode=CLASS_MODE)
+
+validation_generator = dgen_train.flow_from_directory(train_dir,
+                                                      target_size=TARGET_SIZE,
+                                                      subset='validation',
+                                                      batch_size=BATCH_SIZE,
+                                                      class_mode=CLASS_MODE)
+
+# Get the class indices
+train_generator.class_indices
+
+# Get the image shape
+train_generator.image_shape
+
+# Building CNN Model
+model = Sequential()
+model.add(Conv2D(32, (5,5), padding='same', activation='relu',
+                input_shape=(200, 200, 3)))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.2))
+model.add(Conv2D(64, (5,5), padding='same', activation='relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.2))
+model.add(Flatten())
+model.add(Dense(256, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(1, activation='sigmoid'))
+model.summary()
