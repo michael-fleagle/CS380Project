@@ -89,12 +89,12 @@ def infoButtonAction():
     print("3")
 
 def uploadAction():
-    path = QFileDialog.getOpenFileName(None, "Select Image", "C:\\", "*.jpg *.png")
+    path = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
     print(path)
     print(path[0])
 
 def folderUploadAction():
-    path = QFileDialog.getExistingDirectory(None, "Choose Folder", "C:\\")
+    path = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
     print(path)
 
 def clearImageAction():
