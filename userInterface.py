@@ -19,13 +19,14 @@ class LandingPage(QWidget):
 
     # Method to create all UI elements for Landing page
     def UiElem(self):
-        # Image Box
+        # UI Widget Creation
         image = QLabel("Image will go here")
         imageName = QLabel("Name of Image")
         next = QPushButton("Next")
         previous = QPushButton("Previous")
         pageNum = QLabel("1 of 1")
-        info = QLabel("Info")
+        classification = QLabel("Classification: " + "insert animal here")
+        infoButton = QPushButton("More Info")
         upload = QPushButton("Upload")
         folderUpload = QPushButton("Upload Folder")
         clearImage = QPushButton("Clear Image")
@@ -42,7 +43,8 @@ class LandingPage(QWidget):
         layout.addWidget(next, 5, 3)
         layout.addWidget(previous, 5, 1)
         layout.addWidget(pageNum, 5, 2)
-        layout.addWidget(info, 2, 4, 3, 1)
+        layout.addWidget(classification, 2, 4, 1, 1)
+        layout.addWidget(infoButton, 3, 4, 1, 1)
         layout.addWidget(upload, 2, 5)
         layout.addWidget(folderUpload, 2, 6)
         layout.addWidget(clearImage, 3, 5)
@@ -52,12 +54,10 @@ class LandingPage(QWidget):
         layout.addWidget(spacer, 10, 1, 1, 6)
 
         # Add borders to widgets
-        info.setStyleSheet("border: 1px solid black;")
+        classification.setStyleSheet("border: 1px solid black;")
         imageName.setStyleSheet("border: 1px solid black;")
         image.setStyleSheet("border: 1px solid black;")
         pageNum.setStyleSheet("border: 1px solid black;")
 
 
         self.setLayout(layout)
-        
-        
