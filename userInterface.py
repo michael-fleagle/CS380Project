@@ -102,7 +102,7 @@ def folderUploadAction():
 
 def clearImageAction():
     LandingPage().setImgName()
-    print("is this working????")
+    print("This is not working")
     
 def endProcessAction():
     print("7")
