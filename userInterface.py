@@ -4,7 +4,7 @@
 # Import libraries necessary for making UI
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, 
                              QLabel, QLineEdit, QGridLayout, QMessageBox,
-                             QScrollArea, QFrame)
+                             QScrollArea, QFrame, QFileDialog)
 from PyQt5.QtCore import (Qt)
 
 # CLass to create initial landing page
@@ -37,6 +37,7 @@ class LandingPage(QWidget):
         
         #create layout
         layout = QGridLayout()
+        # addWidget(Name, Row, Col)
         # addWidget(Name, Row, Col, RowSpan, ColSpan)
         layout.addWidget(image, 2, 1, 3, 3)
         layout.addWidget(imageName, 1, 1, 1, 3)
@@ -51,8 +52,25 @@ class LandingPage(QWidget):
         layout.addWidget(endProcess, 3, 6)
         layout.addWidget(archive, 4, 6)
 
+        # Spacer widget - plan to change in the future
         layout.addWidget(spacer, 10, 1, 1, 6)
 
+        # Set the layout as the layout
+        self.setLayout(layout)
+
+        # Calls to functions for button functionality
+        next.clicked.connect(nextAction)
+        previous.clicked.connect(previousAction)
+        infoButton.clicked.connect(infoButtonAction)
+        upload.clicked.connect(uploadAction)
+        folderUpload.clicked.connect(folderUploadAction)
+        clearImage.clicked.connect(clearImageAction)
+        endProcess.clicked.connect(endProcessAction)
+        archive.clicked.connect(archiveAction)
+
+
+
+        # Design
         # Add borders to widgets
         classification.setStyleSheet("border: 1px solid black;")
         imageName.setStyleSheet("border: 1px solid black;")
@@ -60,4 +78,30 @@ class LandingPage(QWidget):
         pageNum.setStyleSheet("border: 1px solid black;")
 
 
-        self.setLayout(layout)
+# Functions to provide actions to button clicks
+def nextAction():
+    print("1")
+
+def previousAction():
+    print("2")
+
+def infoButtonAction():
+    print("3")
+
+def uploadAction():
+    path = QFileDialog.getOpenFileName(None, "Select Image", "C:\\", "*.jpg *.png")
+    print(path)
+    print(path[0])
+
+def folderUploadAction():
+    path = QFileDialog.getExistingDirectory(None, "Choose Folder", "C:\\")
+    print(path)
+
+def clearImageAction():
+    print("6")
+
+def endProcessAction():
+    print("7")
+
+def archiveAction():
+    print("8")
