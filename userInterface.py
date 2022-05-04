@@ -77,6 +77,7 @@ class LandingPage(QWidget):
         self.pageNum.setStyleSheet("border: 1px solid black;")
 
     # Setter and Getter Methods
+    # Problems here referencing method from outside class
     def setImgName(self):
         self.imageName.setText("Is This Working")
 
@@ -100,6 +101,7 @@ def folderUploadAction():
     path = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
     print(path)
 
+# Problem referencing method in class above
 def clearImageAction():
     LandingPage().setImgName()
     print("This is not working")
