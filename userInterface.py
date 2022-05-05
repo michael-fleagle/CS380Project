@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton,
                              QLabel, QLineEdit, QGridLayout, QMessageBox,
                              QScrollArea, QFrame, QFileDialog)
 from PyQt5.QtCore import (Qt)
+from PyQt5.QtGui import QPixmap
 
 # CLass to create initial landing page
 class LandingPage(QWidget):
@@ -60,14 +61,14 @@ class LandingPage(QWidget):
         self.setLayout(layout)
 
         # Calls to functions for button functionality
-        self.next.clicked.connect(nextAction)
-        self.previous.clicked.connect(previousAction)
-        self.infoButton.clicked.connect(infoButtonAction)
-        self.upload.clicked.connect(uploadAction)
-        self.folderUpload.clicked.connect(folderUploadAction)
-        self.clearImage.clicked.connect(clearImageAction)
-        self.endProcess.clicked.connect(endProcessAction)
-        self.archive.clicked.connect(archiveAction)
+        self.next.clicked.connect(self.nextAction)
+        self.previous.clicked.connect(self.previousAction)
+        self.infoButton.clicked.connect(self.infoButtonAction)
+        self.upload.clicked.connect(self.uploadAction)
+        self.folderUpload.clicked.connect(self.folderUploadAction)
+        self.clearImage.clicked.connect(self.clearImageAction)
+        self.endProcess.clicked.connect(self.endProcessAction)
+        self.archive.clicked.connect(self.archiveAction)
 
         # Design
         # Add borders to widgets
@@ -76,38 +77,42 @@ class LandingPage(QWidget):
         self.image.setStyleSheet("border: 1px solid black;")
         self.pageNum.setStyleSheet("border: 1px solid black;")
 
-    # Setter and Getter Methods
-    # Problems here referencing method from outside class
-    def setImgName(self):
-        self.imageName.setText("Is This Working")
-
-
-# Functions to provide actions to button clicks
-def nextAction():
-    print("1")
-
-def previousAction():
-    print("2")
-
-def infoButtonAction():
-    print("3")
-
-def uploadAction():
-    path = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
-    print(path)
-    print(path[0])
-
-def folderUploadAction():
-    path = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
-    print(path)
-
-# Problem referencing method in class above
-def clearImageAction():
-    LandingPage().setImgName()
-    print("This is not working")
     
-def endProcessAction():
-    print("7")
+    # Functions to provide actions to button clicks
+    def nextAction(self):
+        print("1")
 
-def archiveAction():
-    print("8")
+    def previousAction(self):
+        print("2")
+
+    def infoButtonAction(self):
+        print("3")
+
+    # When upload is clicked, prompt to select a image then send it to imageClassifier
+    def uploadAction(self):
+        path = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
+        self.image.setPixmap(QPixmap(path[0]).scaled(500, 500, Qt.KeepAspectRatio, Qt.FastTransformation))
+        # Comment needs to be removed when method is created
+        # imageClassifier.setFile(path[0])
+        print(path[0])
+
+    def folderUploadAction(self):
+        path = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
+        # Comment needs to be removed when method is created
+        # imageClassifier.setFolder(path)
+        print(path)
+
+    # Problem referencing method in class above
+    def clearImageAction(self):
+        self.imageName.setText("")
+        self.classification.setText("Classification: ")
+        self.pageNum.setText("0 of 0")
+
+
+    def endProcessAction(self):
+        # Comment needs to be removed when method is created
+        # imageClassifier.continueClassification(False)
+        print("7")
+
+    def archiveAction(self):
+        print("8")
