@@ -6,7 +6,8 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton,
                              QLabel, QLineEdit, QGridLayout, QMessageBox,
                              QScrollArea, QFrame, QFileDialog)
 from PyQt5.QtCore import (Qt)
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap as pix
+import os
 
 # CLass to create initial landing page
 class LandingPage(QWidget):
@@ -41,18 +42,18 @@ class LandingPage(QWidget):
         layout = QGridLayout()
         # addWidget(Name, Row, Col)
         # addWidget(Name, Row, Col, RowSpan, ColSpan)
-        layout.addWidget(self.image, 2, 1, 3, 3)
+        layout.addWidget(self.image, 2, 1, 5, 3)
         layout.addWidget(self.imageName, 1, 1, 1, 3)
-        layout.addWidget(self.next, 5, 3)
-        layout.addWidget(self.previous, 5, 1)
-        layout.addWidget(self.pageNum, 5, 2)
+        layout.addWidget(self.next, 7, 3)
+        layout.addWidget(self.previous, 7, 1)
+        layout.addWidget(self.pageNum, 7, 2)
         layout.addWidget(self.classification, 2, 4, 1, 1)
         layout.addWidget(self.infoButton, 3, 4, 1, 1)
-        layout.addWidget(self.upload, 2, 5)
+        layout.addWidget(self.upload, 1, 6)
         layout.addWidget(self.folderUpload, 2, 6)
-        layout.addWidget(self.clearImage, 3, 5)
-        layout.addWidget(self.endProcess, 3, 6)
-        layout.addWidget(self.archive, 4, 6)
+        layout.addWidget(self.clearImage, 3, 6)
+        layout.addWidget(self.endProcess, 4, 6)
+        layout.addWidget(self.archive, 5, 6)
 
         # Spacer widget - plan to change in the future
         layout.addWidget(spacer, 10, 1, 1, 6)
@@ -76,7 +77,6 @@ class LandingPage(QWidget):
         self.imageName.setStyleSheet("border: 1px solid black;")
         self.image.setStyleSheet("border: 1px solid black;")
         self.pageNum.setStyleSheet("border: 1px solid black;")
-
     
     # Functions to provide actions to button clicks
     def nextAction(self):
@@ -91,7 +91,7 @@ class LandingPage(QWidget):
     # When upload is clicked, prompt to select a image then send it to imageClassifier
     def uploadAction(self):
         path = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
-        self.image.setPixmap(QPixmap(path[0]).scaled(500, 500, Qt.KeepAspectRatio, Qt.FastTransformation))
+        self.image.setPixmap(pix(path[0]).scaled(500, 500, Qt.KeepAspectRatio, Qt.FastTransformation))
         # Comment needs to be removed when method is created
         # imageClassifier.setFile(path[0])
         print(path[0])
