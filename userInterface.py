@@ -23,7 +23,7 @@ class LandingPage(QWidget):
     def UiElem(self):
         # UI Widget Creation
         self.image = QLabel("Image will go here")
-        self.imageName = QLabel("Name of Image")
+        self.imageName = QLabel("")
         self.next = QPushButton("Next")
         self.previous = QPushButton("Previous")
         self.pageNum = QLabel("1 of 1")
@@ -87,8 +87,15 @@ class LandingPage(QWidget):
 
     # When upload is clicked, prompt to select a image then send it to imageClassifier
     def uploadAction(self):
+        # Get path to file
         path = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
-        self.image.setPixmap(pix(path[0]).scaled(500, 500, Qt.KeepAspectRatio, Qt.FastTransformation))
+        # Set image from path
+        self.image.setPixmap(pix(path[0]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
+        
+        # Set image name from path
+        self.imageName.setText(os.path.basename(path[0]))
+
+        # Send path to imageClassifier
         # Comment needs to be removed when method is created
         # imageClassifier.setFile(path[0])
         print(path[0])
