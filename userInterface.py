@@ -55,9 +55,6 @@ class LandingPage(QWidget):
         layout.addWidget(self.endProcess, 4, 6)
         layout.addWidget(self.archive, 5, 6)
 
-        # Spacer widget - plan to change in the future
-        layout.addWidget(spacer, 10, 1, 1, 6)
-
         # Set the layout as the layout
         self.setLayout(layout)
 
