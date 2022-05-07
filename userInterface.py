@@ -103,6 +103,7 @@ class LandingPage(QWidget):
             self.updateImgNum()
 
             # Changes to other widgets needs to be added
+            
         print("2")
 
     def infoButtonAction(self):
