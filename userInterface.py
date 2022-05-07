@@ -103,7 +103,7 @@ class LandingPage(QWidget):
             self.updateImgNum()
 
             # Changes to other widgets needs to be added
-            
+
         print("2")
 
     def infoButtonAction(self):
@@ -113,42 +113,49 @@ class LandingPage(QWidget):
     def uploadAction(self):
         # Get path to file
         path = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
-        # Set image from path
-        self.image.setPixmap(pix(path[0]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
         
-        # Set image name from path
-        self.imageName.setText(os.path.basename(path[0]))
-
-        # Send path to imageClassifier
-        """
-        Comment needs to be removed when method is created
-        imageClassifier.setFile(path[0])
-        """
-        print(path[0])
-
-        # Set max number of images and update widget
-        self.CurrentImgNum = 1
-        self.maxImgNum = 1
-        self.updateImgNum()
+        # Only perform actions if a path was selected
+        if path[0] != "":
+            # Set image from path
+            self.image.setPixmap(pix(path[0]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
+            
+            # Set image name from path
+            self.imageName.setText(os.path.basename(path[0]))
+    
+            # Send path to imageClassifier
+            """
+            Comment needs to be removed when method is created
+            imageClassifier.setFile(path[0])
+            """
+            print(path[0])
+    
+            # Set max number of images and update widget
+            self.CurrentImgNum = 1
+            self.maxImgNum = 1
+            self.updateImgNum()
 
 
 
 
     def folderUploadAction(self):
+        # Get path to folder
         path = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
-        """
-        Comment needs to be removed when method is created
-        imageClassifier.setFolder(path)
         
-        # Set the number of files in the folder to the maxImgNum
-        numFiles = imageClassifier.getNumFiles(path)
-        self.maxImgNum = numFiles
-        """
-        # Remove maxImgNum = 1000 when above comment is uncommented
-        self.maxImgNum = 1000
-        self.updateImgNum()
+        # Only perform actions if a path was selected
+        if path != "":
+            """
+            Comment needs to be removed when method is created
+            imageClassifier.setFolder(path)
 
-        print(path)
+            # Set the number of files in the folder to the maxImgNum
+            numFiles = imageClassifier.getNumFiles(path)
+            self.maxImgNum = numFiles
+            """
+            # Remove maxImgNum = 1000 when above comment is uncommented
+            self.maxImgNum = 1000
+            self.updateImgNum()
+
+            print(path)
 
 
     # When clear button is pressed, reset labels and image
