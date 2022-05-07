@@ -21,12 +21,15 @@ class LandingPage(QWidget):
 
     # Method to create all UI elements for Landing page
     def UiElem(self):
+        # Variables for imgNum widget
+        self.CurrentImgNum = 0
+        self.maxImgNum = 0
         # UI Widget Creation
-        self.image = QLabel("Image will go here")
+        self.image = QLabel("Please upload an image")
         self.imageName = QLabel("")
         self.next = QPushButton("Next")
         self.previous = QPushButton("Previous")
-        self.pageNum = QLabel("1 of 1")
+        self.imgNum = QLabel(str(self.CurrentImgNum) + " of " + str(self.maxImgNum))
         self.classification = QLabel("Classification: " + "insert animal here")
         self.infoButton = QPushButton("More Info")
         self.upload = QPushButton("Upload")
@@ -35,8 +38,6 @@ class LandingPage(QWidget):
         self.endProcess = QPushButton("End Classification")
         self.archive = QPushButton("Archive")
         
-        # Needs to be changed
-        spacer = QLabel("")
         
         #create layout
         layout = QGridLayout()
@@ -46,7 +47,7 @@ class LandingPage(QWidget):
         layout.addWidget(self.imageName, 1, 1, 1, 3)
         layout.addWidget(self.next, 7, 3)
         layout.addWidget(self.previous, 7, 1)
-        layout.addWidget(self.pageNum, 7, 2)
+        layout.addWidget(self.imgNum, 7, 2)
         layout.addWidget(self.classification, 2, 4, 1, 1)
         layout.addWidget(self.infoButton, 3, 4, 1, 1)
         layout.addWidget(self.upload, 1, 6)
@@ -69,17 +70,39 @@ class LandingPage(QWidget):
         self.archive.clicked.connect(self.archiveAction)
 
         # Design
-        # Add borders to widgets
-        self.classification.setStyleSheet("border: 1px solid black;")
-        self.imageName.setStyleSheet("border: 1px solid black;")
-        self.image.setStyleSheet("border: 1px solid black;")
-        self.pageNum.setStyleSheet("border: 1px solid black;")
+        # Background to widgets
+        self.image.setAlignment(Qt.AlignCenter)
+        self.imgNum.setAlignment(Qt.AlignCenter)
+        self.classification.setStyleSheet("border: 1px solid black; background-color: white")
+        self.imageName.setStyleSheet("border: 1px solid black; background-color: white")
+        self.image.setStyleSheet("border: 1px solid black; background-color: white")
+        self.imgNum.setStyleSheet("border: 1px solid black; background-color: white")
+        self.endProcess.setStyleSheet("color: red;")
+        self.clearImage.setStyleSheet("color: orange;")
     
     # Functions to provide actions to button clicks
+    # Method that changes to the next image, image name, classification, and image number
     def nextAction(self):
+        # Only increase if less than maximum number of images
+        if self.CurrentImgNum < self.maxImgNum:
+            # Increase image number and update the widget
+            self.CurrentImgNum = self.CurrentImgNum + 1
+            self.updateImgNum()
+
+            # Changes to other widgets needs to be added
+
+        
         print("1")
 
+    # Method that changes to the previous image, image name, classification, and image number
     def previousAction(self):
+        # Only decrease if larger than 1
+        if self.CurrentImgNum > 1:
+            # Decrease image number and update widget
+            self.CurrentImgNum = self.CurrentImgNum - 1
+            self.updateImgNum()
+
+            # Changes to other widgets needs to be added
         print("2")
 
     def infoButtonAction(self):
@@ -96,27 +119,56 @@ class LandingPage(QWidget):
         self.imageName.setText(os.path.basename(path[0]))
 
         # Send path to imageClassifier
-        # Comment needs to be removed when method is created
-        # imageClassifier.setFile(path[0])
+        """
+        Comment needs to be removed when method is created
+        imageClassifier.setFile(path[0])
+        """
         print(path[0])
+
+        # Set max number of images and update widget
+        self.CurrentImgNum = 1
+        self.maxImgNum = 1
+        self.updateImgNum()
+
+
+
 
     def folderUploadAction(self):
         path = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
-        # Comment needs to be removed when method is created
-        # imageClassifier.setFolder(path)
+        """
+        Comment needs to be removed when method is created
+        imageClassifier.setFolder(path)
+        
+        # Set the number of files in the folder to the maxImgNum
+        numFiles = imageClassifier.getNumFiles(path)
+        self.maxImgNum = numFiles
+        """
+        # Remove maxImgNum = 1000 when above comment is uncommented
+        self.maxImgNum = 1000
+        self.updateImgNum()
+
         print(path)
 
-    # Problem referencing method in class above
+
+    # When clear button is pressed, reset labels and image
     def clearImageAction(self):
         self.imageName.setText("")
-        self.classification.setText("Classification: ")
-        self.pageNum.setText("0 of 0")
+        self.classification.setText("Classification:                          ")
+        self.imgNum.setText("0 of 0")
+        self.image.setPixmap(pix(""))
+        self.image.setText("Please upload an image")
 
 
     def endProcessAction(self):
-        # Comment needs to be removed when method is created
-        # imageClassifier.continueClassification(False)
+        """
+        Comment needs to be removed when method is created
+        imageClassifier.continueClassification(False)
+        """
         print("7")
 
     def archiveAction(self):
         print("8")
+
+    # Method to update the image numbers
+    def updateImgNum(self):
+        self.imgNum.setText(str(self.CurrentImgNum) + " of " + str(self.maxImgNum))
