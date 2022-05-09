@@ -154,6 +154,7 @@ class LandingPage(QWidget):
             # Remove maxImgNum = 1000 when above comment is uncommented
             self.maxImgNum = 1000
             self.updateImgNum()
+            self.image.setText("Folder was uploaded, future image preview will go here")
 
             print(path)
 
