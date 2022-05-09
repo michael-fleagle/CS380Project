@@ -30,7 +30,7 @@ class LandingPage(QWidget):
         self.next = QPushButton("Next")
         self.previous = QPushButton("Previous")
         self.imgNum = QLabel(str(self.CurrentImgNum) + " of " + str(self.maxImgNum))
-        self.classification = QLabel("Classification: " + "insert animal here")
+        self.classification = QLabel("Classification:                          ")
         self.infoButton = QPushButton("More Info")
         self.upload = QPushButton("Upload")
         self.folderUpload = QPushButton("Upload Folder")
@@ -133,7 +133,7 @@ class LandingPage(QWidget):
             self.CurrentImgNum = 1
             self.maxImgNum = 1
             self.updateImgNum()
-
+            self.classification.setText("Classification: " + "insert animal here")
 
 
 
@@ -155,6 +155,7 @@ class LandingPage(QWidget):
             self.maxImgNum = 1000
             self.updateImgNum()
             self.image.setText("Folder was uploaded, future image preview will go here")
+            self.classification.setText("Classification: " + "insert animal here")
 
             print(path)
 
