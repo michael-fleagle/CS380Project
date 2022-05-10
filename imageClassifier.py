@@ -3,7 +3,11 @@
 #Import libraries necessary for image processing, 
 
 import numpy as np
-import tensorflow
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import PIL
 import os
 import matplotlib.image as mpimg
