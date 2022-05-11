@@ -4,11 +4,11 @@
 
 import numpy as np
 import tensorflow as tf
-from tensorflow import keras
-from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
-from keras.optimizers import Adam
-from keras.preprocessing.image import ImageDataGenerator
+# from tensorflow import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import PIL
 import os
 import matplotlib.image as mpimg
@@ -121,3 +121,25 @@ model.add(Dense(256, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(1, activation='sigmoid'))
 model.summary()
+
+# Compile the Model
+model.compile(Adam(lr=0.001), loss='binary_crossentropy', metrics = ['accuracy'])
+
+# Train the model
+modHist = model.fit(train_generator, 
+                    epochs = 30,
+                    validation_data = validation_generator,
+                    callbacks = [
+                        # stop training if accuracy does not improve
+                        tf.keras.callbacks.EarlyStopping(monitor = 'val_accuracy', patience = 20),
+
+                        # save weight and model
+                        tf.keras.callbacks.ModelCheckpoint('models/model_{val_accuracy: .3f}.h5',
+                                                        save_best_only = True,
+                                                        save_weights_only = False,
+                                                        monitor = 'val_accuracy'
+                                                        )
+                                ]
+                    )
+
+# Training currently breaks for some reason. It could be an issue with reading the images, or something else. If anyone knows a solution, that'd be great
