@@ -8,6 +8,8 @@ import PIL
 import os
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
+from tensorflow import keras
+
 
 # create a path to data directory
 # must be changed for each user
