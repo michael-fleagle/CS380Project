@@ -4,15 +4,15 @@
 
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow import keras
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
+from keras.optimizers import Adam
+from keras.preprocessing.image import ImageDataGenerator
 import PIL
 import os
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
-from tensorflow import keras
 
 
 # create a path to data directory
