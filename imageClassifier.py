@@ -16,7 +16,8 @@ import matplotlib.pyplot as plt
 
 # create a path to data directory
 # must be changed for each user
-img_dir = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal"
+# img_dir = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal"
+img_dir = "D:\\Animal"
 
 # train animal directory
 train_dir = os.path.join(img_dir, "train")
