@@ -11,6 +11,11 @@ __pycache__/
 *.png
 *.jpeg
 
+# Data files
+*.index
+*.data-00000-of-00001
+*.pb
+
 # Distribution / packaging
 .Python
 build/
