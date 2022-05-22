@@ -86,7 +86,7 @@ dgen_test = ImageDataGenerator(rescale=1./255)
 
 TARGET_SIZE = (200, 200)
 BATCH_SIZE = 32
-CLASS_MODE = 'binary'
+CLASS_MODE = 'categorical'
 
 # Connecting the ImageDataGenerator objects to our dataset
 train_generator = dgen_train.flow_from_directory(train_dir,
@@ -123,7 +123,7 @@ model.add(Dense(1, activation='sigmoid'))
 model.summary()
 
 # Compile the Model
-model.compile(Adam(lr=0.001), loss='binary_crossentropy', metrics = ['accuracy'])
+model.compile(Adam(lr=0.001), loss='categorical_crossentropy', metrics = ['accuracy'])
 
 # Train the model
 modHist = model.fit(train_generator, 
