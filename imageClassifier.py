@@ -143,3 +143,26 @@ modHist = model.fit(train_generator,
                     )
 
 # Training currently breaks for some reason. It could be an issue with reading the images, or something else. If anyone knows a solution, that'd be great
+
+# Save the most accurate model from training
+# Change based on your directory and model name
+"""
+Doesnt work atm
+model = tf.keras.models.load_model('/CS 380/CS380Project/models/model_0.635.h5')
+"""
+
+# Recieves image path from userInterface, classifies image
+def setFile(path):
+    test_image = image.load_img(path, target_size=(200,200))
+
+    # convert image to numpy array
+    images = image.img_to_array(test_image)
+    # expand dimension of image
+    images = np.expand_dims(images, axis=0)
+    # making prediction with model
+    prediction = model.predict(images)
+    
+    if prediction == 0:
+        print('Cat')
+    else:
+      print('Not a cat')
