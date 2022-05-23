@@ -23,7 +23,7 @@ class LandingPage(QWidget):
     def UiElem(self):
         # Variable to hold path of file or folder
         self.filePath = ()
-        self.dirPath = ()
+        self.dirPath = ""
 
         # Variables for imgNum widget
         self.currentImgNum = 0
@@ -179,6 +179,8 @@ class LandingPage(QWidget):
         self.updateImgNum()
         self.image.setPixmap(pix(""))
         self.image.setText("Please upload an image")
+        self.dirPath = ""
+        self.filePath = ()
 
 
     def endProcessAction(self):
@@ -200,7 +202,10 @@ class LandingPage(QWidget):
     def updateImgDisplay(self):
         # Set image from path based on currentImgNum
         index = self.currentImgNum - 1
-        self.image.setPixmap(pix(self.dirPath + "/" + self.filePath[index]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
+        if self.dirPath == "":
+            self.image.setPixmap(pix(self.filePath[index]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
+        else:
+            self.image.setPixmap(pix(self.dirPath + "/" + self.filePath[index]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
 
     # Image name
     def updateImgName(self):
