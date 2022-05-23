@@ -21,15 +21,20 @@ class LandingPage(QWidget):
 
     # Method to create all UI elements for Landing page
     def UiElem(self):
+        # Variable to hold path of file or folder
+        self.filePath = ()
+        self.dirPath = ()
+
         # Variables for imgNum widget
-        self.CurrentImgNum = 0
+        self.currentImgNum = 0
         self.maxImgNum = 0
+        
         # UI Widget Creation
         self.image = QLabel("Please upload an image")
         self.imageName = QLabel("")
         self.next = QPushButton("Next")
         self.previous = QPushButton("Previous")
-        self.imgNum = QLabel(str(self.CurrentImgNum) + " of " + str(self.maxImgNum))
+        self.imgNum = QLabel(str(self.currentImgNum) + " of " + str(self.maxImgNum))
         self.classification = QLabel("Classification:                          ")
         self.infoButton = QPushButton("More Info")
         self.upload = QPushButton("Upload")
@@ -70,13 +75,18 @@ class LandingPage(QWidget):
         self.archive.clicked.connect(self.archiveAction)
 
         # Design
-        # Background to widgets
+        # Text Alignment
         self.image.setAlignment(Qt.AlignCenter)
         self.imgNum.setAlignment(Qt.AlignCenter)
+        self.imageName.setAlignment(Qt.AlignCenter)
+        
+        # Background to widgets
         self.classification.setStyleSheet("border: 1px solid black; background-color: white")
         self.imageName.setStyleSheet("border: 1px solid black; background-color: white")
         self.image.setStyleSheet("border: 1px solid black; background-color: white")
         self.imgNum.setStyleSheet("border: 1px solid black; background-color: white")
+        
+        # Text Color
         self.endProcess.setStyleSheet("color: red;")
         self.clearImage.setStyleSheet("color: orange;")
     
@@ -84,87 +94,89 @@ class LandingPage(QWidget):
     # Method that changes to the next image, image name, classification, and image number
     def nextAction(self):
         # Only increase if less than maximum number of images
-        if self.CurrentImgNum < self.maxImgNum:
+        if self.currentImgNum < self.maxImgNum:
             # Increase image number and update the widget
-            self.CurrentImgNum = self.CurrentImgNum + 1
+            self.currentImgNum = self.currentImgNum + 1
             self.updateImgNum()
-
-            # Changes to other widgets needs to be added
-
-        
-        print("1")
+            self.updateImgDisplay()
+            self.updateImgName()
+            self.updateClassification()
 
     # Method that changes to the previous image, image name, classification, and image number
     def previousAction(self):
         # Only decrease if larger than 1
-        if self.CurrentImgNum > 1:
+        if self.currentImgNum > 1:
             # Decrease image number and update widget
-            self.CurrentImgNum = self.CurrentImgNum - 1
+            self.currentImgNum = self.currentImgNum - 1
             self.updateImgNum()
+            self.updateImgDisplay()
+            self.updateImgName()
+            self.updateClassification()
 
-            # Changes to other widgets needs to be added
-
-        print("2")
-
+    # Method to provide more info
     def infoButtonAction(self):
         print("3")
 
     # When upload is clicked, prompt to select a image then send it to imageClassifier
     def uploadAction(self):
         # Get path to file
-        path = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
+        pathTemp = QFileDialog.getOpenFileName(None, "Select Image", "", "*.jpg *.png")
         
         # Only perform actions if a path was selected
-        if path[0] != "":
-            # Set image from path
-            self.image.setPixmap(pix(path[0]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
-            
-            # Set image name from path
-            self.imageName.setText(os.path.basename(path[0]))
-    
+        if pathTemp[0] != "":
             # Send path to imageClassifier
             """
             Comment needs to be removed when method is created
             imageClassifier.setFile(path[0])
             """
-            print(path[0])
+            # Set the path variable to only the first part of the pathTemp
+            self.filePath = (pathTemp[:1])
     
-            # Set max number of images and update widget
-            self.CurrentImgNum = 1
+            # Set max number of images and update window
+            self.currentImgNum = 1
             self.maxImgNum = 1
             self.updateImgNum()
-            self.classification.setText("Classification: " + "insert animal here")
+            self.updateImgDisplay()
+            self.updateImgName()
+            self.updateClassification()
+
+            # Reminder in console that this is not finished
+            print(self.filePath)
 
 
 
     def folderUploadAction(self):
         # Get path to folder
-        path = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
+        self.dirPath = QFileDialog.getExistingDirectory(None, "Choose Folder", "")
         
         # Only perform actions if a path was selected
-        if path != "":
+        if self.dirPath != "":
             """
             Comment needs to be removed when method is created
             imageClassifier.setFolder(path)
-
-            # Set the number of files in the folder to the maxImgNum
-            numFiles = imageClassifier.getNumFiles(path)
-            self.maxImgNum = numFiles
             """
-            # Remove maxImgNum = 1000 when above comment is uncommented
-            self.maxImgNum = 1000
-            self.updateImgNum()
-            self.image.setText("Folder was uploaded, future image preview will go here")
-            self.classification.setText("Classification: " + "insert animal here")
+            # Place the list of files in the folder into filePath
+            self.filePath = os.listdir(self.dirPath)
 
-            print(path)
+            # Set maxNum and reset currentNum and update window
+            self.currentImgNum = 1
+            self.maxImgNum = len(self.filePath)
+            self.updateImgNum()
+            self.updateImgDisplay()
+            self.updateImgName()
+            self.updateClassification()
+
+            # Reminder in console that this is not finished
+            # print(self.filePath)
 
 
     # When clear button is pressed, reset labels and image
     def clearImageAction(self):
         self.imageName.setText("")
         self.classification.setText("Classification:                          ")
-        self.imgNum.setText("0 of 0")
+        self.currentImgNum = 0
+        self.maxImgNum = 0
+        self.updateImgNum()
         self.image.setPixmap(pix(""))
         self.image.setText("Please upload an image")
 
@@ -179,6 +191,23 @@ class LandingPage(QWidget):
     def archiveAction(self):
         print("8")
 
-    # Method to update the image numbers
+    # Methods to update
+    # Image numbers
     def updateImgNum(self):
-        self.imgNum.setText(str(self.CurrentImgNum) + " of " + str(self.maxImgNum))
+        self.imgNum.setText(str(self.currentImgNum) + " of " + str(self.maxImgNum))
+
+    # Image display
+    def updateImgDisplay(self):
+        # Set image from path based on currentImgNum
+        index = self.currentImgNum - 1
+        self.image.setPixmap(pix(self.dirPath + "/" + self.filePath[index]).scaled(550, 550, Qt.KeepAspectRatio, Qt.FastTransformation))
+
+    # Image name
+    def updateImgName(self):
+        # Set Image name based on name of file at index of currentImgNum
+        index = self.currentImgNum - 1
+        self.imageName.setText(os.path.basename(self.filePath[index]))
+        
+    # Classifications
+    def updateClassification(self):
+        self.classification.setText("Classification: " + "insert animal here")
