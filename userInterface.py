@@ -156,7 +156,7 @@ class LandingPage(QWidget):
             imageClassifier.setFolder(path)
             """
             # Place the list of files in the folder into filePath
-            self.filePath = os.listdir(self.dirPath)
+            self.filePath = self.fileFilter(self.dirPath)
 
             # Set maxNum and reset currentNum and update window
             self.currentImgNum = 1
@@ -216,3 +216,16 @@ class LandingPage(QWidget):
     # Classifications
     def updateClassification(self):
         self.classification.setText("Classification: " + "insert animal here")
+
+    # Method to filter out non png and jpg files from directory
+    def fileFilter(self, path):
+        allFiles = os.listdir(path)
+        filtered = []
+        
+        # Loop through all the files and add png and jpg files to filtered
+        for file in allFiles:
+            if file.endswith(".png") or file.endswith(".jpg"):
+                filtered.append(file)
+
+        # Return the filtered list of files as tuple
+        return tuple(filtered)
