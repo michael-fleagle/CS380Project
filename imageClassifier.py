@@ -148,7 +148,7 @@ modHist = model.fit(train_generator,
 # Change based on your directory and model name
 """
 Doesnt work atm
-model = tf.keras.models.load_model('/CS 380/CS380Project/models/model_0.635.h5')
+model = tf.keras.models.load_model('/CS 380/CS380Project/models/model_ 0.799.h5')
 """
 
 # Recieves image path from userInterface, classifies image
