@@ -144,12 +144,9 @@ modHist = model.fit(train_generator,
 
 # Training currently breaks for some reason. It could be an issue with reading the images, or something else. If anyone knows a solution, that'd be great
 
-# Save the most accurate model from training
-# Change based on your directory and model name
-"""
-Doesnt work atm
-model = tf.keras.models.load_model('/CS 380/CS380Project/models/model_ 0.799.h5')
-"""
+# Saves the model from training
+model.save('model')
+model = tf.keras.models.load_model('model')
 
 # Recieves image path from userInterface, classifies image
 def setFile(path):
