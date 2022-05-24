@@ -162,7 +162,13 @@ def setFile(path):
     # making prediction with model
     prediction = model.predict(images)
     
-    if prediction == 0:
+   if prediction == 0:
         print('Cat')
-    else:
-      print('Not a cat')
+    elif prediction == 1:
+      print('Dog')
+    elif prediction == 2:
+      print('Elephant')
+    elif prediction == 3:
+      print('Horse')
+    elif prediction == 4:
+      print('Lion')
