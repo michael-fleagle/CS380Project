@@ -115,7 +115,8 @@ class LandingPage(QWidget):
 
     # Method to provide more info
     def infoButtonAction(self):
-        print("3")
+        if self.currentImgNum != 0:
+            print("Here is some more info on your classification: ")
 
     # When upload is clicked, prompt to select a image then send it to imageClassifier
     def uploadAction(self):
