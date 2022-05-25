@@ -15,6 +15,7 @@ __pycache__/
 *.index
 *.data-00000-of-00001
 *.pb
+*.h5
 
 # Distribution / packaging
 .Python
