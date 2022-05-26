@@ -30,11 +30,30 @@ def setFile(path):
     
     if prediction == 0:
         print('Cat')
+        return "Cat"
     elif prediction == 1:
       print('Dog')
+      return "Dog"
     elif prediction == 2:
       print('Elephant')
+      return "Elephant"
     elif prediction == 3:
       print('Horse')
+      return "Horse"
     elif prediction == 4:
       print('Lion')
+      return "Lion"
+
+
+# Method to classify a folder of images
+def setFolder(dir, fileNames):
+  # List to append classifications to
+  classification = []
+  
+  # For each file in the given directory, classify it and add it to list of classifications
+  for file in fileNames:
+    fullPath = dir + file
+    classification.append(setFile(fullPath))
+  
+  # Return classifications as a tuple
+  return tuple(classification)
