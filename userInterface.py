@@ -130,11 +130,8 @@ class LandingPage(QWidget):
         # Only perform actions if a path was selected
         if pathTemp[0] != "":
             # Send path to imageClassifier
-
-            """
-            # Comment needs to be removed when method is created
             self.classificationNames = tuple(imageClassifier.setFile(pathTemp[0]))
-            """
+            
             # Set the path variable to only the first part of the pathTemp
             self.filePath = (pathTemp[:1])
     
