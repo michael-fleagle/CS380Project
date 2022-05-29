@@ -2,6 +2,7 @@
 # Description: File to handle the UI for the imageClassiferDriver file
 
 # Import libraries necessary for making UI
+import imageClassifier
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, 
                              QLabel, QLineEdit, QGridLayout, QMessageBox,
                              QScrollArea, QFrame, QFileDialog)
@@ -28,6 +29,9 @@ class LandingPage(QWidget):
         # Variables for imgNum widget
         self.currentImgNum = 0
         self.maxImgNum = 0
+
+        # Variable to hold classifications
+        self.classificationNames = ()
         
         # UI Widget Creation
         self.image = QLabel("Please upload an image")
@@ -35,7 +39,7 @@ class LandingPage(QWidget):
         self.next = QPushButton("Next")
         self.previous = QPushButton("Previous")
         self.imgNum = QLabel(str(self.currentImgNum) + " of " + str(self.maxImgNum))
-        self.classification = QLabel("Classification:                          ")
+        self.classificationLabel = QLabel("Classification:                          ")
         self.infoButton = QPushButton("More Info")
         self.upload = QPushButton("Upload")
         self.folderUpload = QPushButton("Upload Folder")
@@ -53,7 +57,7 @@ class LandingPage(QWidget):
         layout.addWidget(self.next, 7, 3)
         layout.addWidget(self.previous, 7, 1)
         layout.addWidget(self.imgNum, 7, 2)
-        layout.addWidget(self.classification, 2, 4, 1, 1)
+        layout.addWidget(self.classificationLabel, 2, 4, 1, 1)
         layout.addWidget(self.infoButton, 3, 4, 1, 1)
         layout.addWidget(self.upload, 1, 6)
         layout.addWidget(self.folderUpload, 2, 6)
@@ -81,7 +85,7 @@ class LandingPage(QWidget):
         self.imageName.setAlignment(Qt.AlignCenter)
         
         # Background to widgets
-        self.classification.setStyleSheet("border: 1px solid black; background-color: white")
+        self.classificationLabel.setStyleSheet("border: 1px solid black; background-color: white")
         self.imageName.setStyleSheet("border: 1px solid black; background-color: white")
         self.image.setStyleSheet("border: 1px solid black; background-color: white")
         self.imgNum.setStyleSheet("border: 1px solid black; background-color: white")
@@ -126,9 +130,10 @@ class LandingPage(QWidget):
         # Only perform actions if a path was selected
         if pathTemp[0] != "":
             # Send path to imageClassifier
+
             """
-            Comment needs to be removed when method is created
-            imageClassifier.setFile(path[0])
+            # Comment needs to be removed when method is created
+            self.classificationNames = tuple(imageClassifier.setFile(pathTemp[0]))
             """
             # Set the path variable to only the first part of the pathTemp
             self.filePath = (pathTemp[:1])
@@ -152,12 +157,12 @@ class LandingPage(QWidget):
         
         # Only perform actions if a path was selected
         if self.dirPath != "":
-            """
-            Comment needs to be removed when method is created
-            imageClassifier.setFolder(path)
-            """
+            
             # Place the list of files in the folder into filePath
             self.filePath = self.fileFilter(self.dirPath)
+
+            # Comment needs to be removed when method is created
+            self.classifactionNames = imageClassifier.setFolder(self.dirPath, self.filePath)
 
             # Set maxNum and reset currentNum and update window
             self.currentImgNum = 1
@@ -174,7 +179,7 @@ class LandingPage(QWidget):
     # When clear button is pressed, reset labels and image
     def clearImageAction(self):
         self.imageName.setText("")
-        self.classification.setText("Classification:                          ")
+        self.classificationLabel.setText("Classification:                          ")
         self.currentImgNum = 0
         self.maxImgNum = 0
         self.updateImgNum()
@@ -216,7 +221,8 @@ class LandingPage(QWidget):
         
     # Classifications
     def updateClassification(self):
-        self.classification.setText("Classification: " + "insert animal here")
+        index = self.currentImgNum - 1
+        self.classificationLabel.setText("Classification: " + self.classifactionNames(index))
 
     # Method to filter out non png and jpg files from directory
     def fileFilter(self, path):
