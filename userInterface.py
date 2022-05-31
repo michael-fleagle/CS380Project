@@ -214,7 +214,7 @@ class LandingPage(QWidget):
             self.filePath = self.fileFilter(self.dirPath)
             
             # Comment needs to be removed when method is created
-            self.classifactionNames = imageClassifier.setFolder(self.dirPath, self.filePath)
+            self.classificationNames = imageClassifier.setFolder(self.dirPath, self.filePath)
             
             # Set maxNum and reset currentNum and update window
             self.currentImgNum = 1
@@ -275,7 +275,7 @@ class LandingPage(QWidget):
     def updateClassification(self):
         
         index = self.currentImgNum - 1
-        self.classificationLabel.setText("Classification: " + self.classifactionNames(index))
+        self.classificationLabel.setText("Classification: " + self.classificationNames(index))
         
         # self.classificationLabel.setText("Classification: " + "                        ")
 

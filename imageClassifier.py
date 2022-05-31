@@ -58,7 +58,7 @@ def setFolder(dir, fileNames):
 
     # For each file in the given directory, classify it and add it to list of classifications
     for file in fileNames:
-      fullPath = dir + file
+      fullPath = dir + "/" + file
       classification.append(setFile(fullPath))
 
     # Return classifications as a tuple
