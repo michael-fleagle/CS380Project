@@ -17,6 +17,9 @@ import matplotlib.pyplot as plt
 model.save('model')
 model = tf.keras.models.load_model('model')
 
+# Variable for setFile to check to continue
+continueClassification = True
+
 # Recieves image path from userInterface, classifies image
 def setFile(path):
     test_image = image.load_img(path, target_size=(200,200))
@@ -47,13 +50,18 @@ def setFile(path):
 
 # Method to classify a folder of images
 def setFolder(dir, fileNames):
-  # List to append classifications to
-  classification = []
-  
-  # For each file in the given directory, classify it and add it to list of classifications
-  for file in fileNames:
-    fullPath = dir + file
-    classification.append(setFile(fullPath))
-  
-  # Return classifications as a tuple
-  return tuple(classification)
+  if continueClassification:
+    # List to append classifications to
+    classification = []
+
+    # For each file in the given directory, classify it and add it to list of classifications
+    for file in fileNames:
+      fullPath = dir + file
+      classification.append(setFile(fullPath))
+
+    # Return classifications as a tuple
+    return tuple(classification)
+
+# Method for setFile to check to stop
+def stopClassification():
+  continueClassification = False
