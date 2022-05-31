@@ -14,7 +14,9 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 
 # Saves the model from training
-model.save('model')
+# model.save('model')
+
+# Change 'model' to the exact filepath where your model is saved
 model = tf.keras.models.load_model('model')
 
 # Variable for setFile to check to continue
