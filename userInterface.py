@@ -119,8 +119,14 @@ class LandingPage(QWidget):
 
     # Method to provide more info
     def infoButtonAction(self):
-        if self.currentImgNum != 0:
-            print("Here is some more info on your classification: ")
+
+        info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\CAT.txt', 'r')
+        message = info.read()
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle("More Information on Cats")
+        msg.setText(message)
+        msg.setStandardButtons(QMessageBox.Ok)
 
     # When upload is clicked, prompt to select a image then send it to imageClassifier
     def uploadAction(self):
