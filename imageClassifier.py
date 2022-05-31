@@ -14,8 +14,13 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 
 # Saves the model from training
-model.save('model')
+# model.save('model')
+
+# Change 'model' to the exact filepath where your model is saved
 model = tf.keras.models.load_model('model')
+
+# Variable for setFile to check to continue
+continueClassification = True
 
 # Recieves image path from userInterface, classifies image
 def setFile(path):
@@ -47,13 +52,18 @@ def setFile(path):
 
 # Method to classify a folder of images
 def setFolder(dir, fileNames):
-  # List to append classifications to
-  classification = []
-  
-  # For each file in the given directory, classify it and add it to list of classifications
-  for file in fileNames:
-    fullPath = dir + file
-    classification.append(setFile(fullPath))
-  
-  # Return classifications as a tuple
-  return tuple(classification)
+  if continueClassification:
+    # List to append classifications to
+    classification = []
+
+    # For each file in the given directory, classify it and add it to list of classifications
+    for file in fileNames:
+      fullPath = dir + file
+      classification.append(setFile(fullPath))
+
+    # Return classifications as a tuple
+    return tuple(classification)
+
+# Method for setFile to check to stop
+def stopClassification():
+  continueClassification = False

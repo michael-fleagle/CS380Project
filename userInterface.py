@@ -2,7 +2,7 @@
 # Description: File to handle the UI for the imageClassiferDriver file
 
 # Import libraries necessary for making UI
-# import imageClassifier
+import imageClassifier
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, 
                              QLabel, QLineEdit, QGridLayout, QMessageBox,
                              QScrollArea, QFrame, QFileDialog)
@@ -183,10 +183,10 @@ class LandingPage(QWidget):
         
         # Only perform actions if a path was selected
         if pathTemp[0] != "":
-            """
+            
             # Send path to imageClassifier
             self.classificationNames = tuple(imageClassifier.setFile(pathTemp[0]))
-            """
+            
             # Set the path variable to only the first part of the pathTemp
             self.filePath = (pathTemp[:1])
     
@@ -212,10 +212,10 @@ class LandingPage(QWidget):
             
             # Place the list of files in the folder into filePath
             self.filePath = self.fileFilter(self.dirPath)
-            """
+            
             # Comment needs to be removed when method is created
             self.classifactionNames = imageClassifier.setFolder(self.dirPath, self.filePath)
-            """
+            
             # Set maxNum and reset currentNum and update window
             self.currentImgNum = 1
             self.maxImgNum = len(self.filePath)
@@ -242,10 +242,10 @@ class LandingPage(QWidget):
 
 
     def endProcessAction(self):
-        """
-        Comment needs to be removed when method is created
-        imageClassifier.continueClassification(False)
-        """
+        
+        # Set the check in imageClassifier.py to flase
+        imageClassifier.stopClassification()
+        
         print("7")
 
     def archiveAction(self):
@@ -273,11 +273,12 @@ class LandingPage(QWidget):
         
     # Classifications
     def updateClassification(self):
-        """
+        
         index = self.currentImgNum - 1
         self.classificationLabel.setText("Classification: " + self.classifactionNames(index))
-        """
-        self.classificationLabel.setText("Classification: " + "                        ")
+        
+        # self.classificationLabel.setText("Classification: " + "                        ")
+
     # Method to filter out non png and jpg files from directory
     def fileFilter(self, path):
         allFiles = os.listdir(path)
