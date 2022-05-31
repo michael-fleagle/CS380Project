@@ -120,13 +120,61 @@ class LandingPage(QWidget):
     # Method to provide more info
     def infoButtonAction(self):
 
-        info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\CAT.txt', 'r')
-        message = info.read()
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
-        msg.setWindowTitle("More Information on Cats")
-        msg.setText(message)
-        msg.setStandardButtons(QMessageBox.Ok)
+        classify = 'CAT'
+
+        if classify is 'CAT':
+
+            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\CAT.txt', 'r')
+            message = info.read()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle("More Information on Cats")
+            msg.setText(message)
+            msg.setStandardButtons(QMessageBox.Ok)
+
+        if classify is 'DOG':
+
+            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\DOG.txt', 'r')
+            message = info.read()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle("More Information on Dogs")
+            msg.setText(message)
+            msg.setStandardButtons(QMessageBox.Ok)
+
+        if classify is 'ELEPHANT':
+
+            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\ELEPHANT.txt', 'r')
+            message = info.read()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle("More Information on Elephants")
+            msg.setText(message)
+            msg.setStandardButtons(QMessageBox.Ok)
+        
+        if classify is 'HORSE':
+
+            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\HORSE.txt', 'r')
+            message = info.read()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle("More Information on Horses")
+            msg.setText(message)
+            msg.setStandardButtons(QMessageBox.Ok)
+
+        if classify is 'LION':
+
+            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\LION.txt', 'r')
+            message = info.read()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle("More Information on Lions")
+            msg.setText(message)
+            msg.setStandardButtons(QMessageBox.Ok)
+
+
+
+
 
     # When upload is clicked, prompt to select a image then send it to imageClassifier
     def uploadAction(self):
