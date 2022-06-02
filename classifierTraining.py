@@ -18,22 +18,26 @@ import matplotlib.pyplot as plt
 img_dir = "I:\\CS 380\\Project\\CS380Project\\archive\\Animal"
 # img_dir = "D:\\Animal" # Used for Jacob's laptop
 
-# train animal directory
 train_dir = os.path.join(img_dir, "train")
+
 
 # Use os to create a proper file path
 trainCatDir = os.path.join(train_dir, "cat")
 trainDogDir = os.path.join(train_dir, "dog")
+"""
 trainElDir = os.path.join(train_dir, "elephant")
 trainHorDir = os.path.join(train_dir, "horse")
 trainLioDir = os.path.join(train_dir, "lion")
-
+"""
 # Create list of image names from directory
 trainCatNames = os.listdir(trainCatDir)
 trainDogNames = os.listdir(trainDogDir)
+
+"""
 trainElNames = os.listdir(trainElDir)
 trainHorNames = os.listdir(trainHorDir)
 trainLioNames = os.listdir(trainLioDir)
+"""
 
 
 ROWS = 4
@@ -85,7 +89,7 @@ dgen_test = ImageDataGenerator(rescale=1./255)
 
 TARGET_SIZE = (200, 200)
 BATCH_SIZE = 32
-CLASS_MODE = 'categorical'
+CLASS_MODE = 'binary'
 
 # Connecting the ImageDataGenerator objects to our dataset
 train_generator = dgen_train.flow_from_directory(train_dir,
@@ -122,7 +126,7 @@ model.add(Dense(1, activation='sigmoid'))
 model.summary()
 
 # Compile the Model
-model.compile(Adam(lr=0.001), loss='categorical_crossentropy', metrics = ['accuracy'])
+model.compile(Adam(lr=0.001), loss='binary_crossentropy', metrics = ['accuracy'])
 
 # Train the model
 modHist = model.fit(train_generator, 
