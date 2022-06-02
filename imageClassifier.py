@@ -34,10 +34,9 @@ def setFile(path):
     # making prediction with model
     prediction = model.predict(images)
     
-    print('Prediction: ')
+    # print('Prediction: ')
     
-    print(prediction)
-
+    # print(prediction)
     
     if prediction == 3:
         print('Cat')
@@ -54,6 +53,8 @@ def setFile(path):
     elif prediction == 2:
       print('Lion')
       return "Lion"
+    else:
+      return "ERROR"
 
 
 # Method to classify a folder of images
