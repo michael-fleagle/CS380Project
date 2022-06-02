@@ -8,6 +8,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing import image
 import PIL
 import os
 import matplotlib.image as mpimg
@@ -17,7 +18,7 @@ import matplotlib.pyplot as plt
 # model.save('model')
 
 # Change 'model' to the exact filepath where your model is saved
-model = tf.keras.models.load_model('model')
+model = tf.keras.models.load_model("C:\\Users\\thund\\OneDrive - Central Washington University\\Spring 2022\\CS 380\\CS380Project\model_ 0.775")
 
 # Variable for setFile to check to continue
 continueClassification = True
@@ -36,6 +37,7 @@ def setFile(path):
     print('Prediction: ')
     
     print(prediction)
+
     
     if prediction == 3:
         print('Cat')

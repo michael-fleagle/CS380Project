@@ -131,6 +131,7 @@ class LandingPage(QWidget):
             msg.setWindowTitle("More Information on Cats")
             msg.setText(message)
             msg.setStandardButtons(QMessageBox.Ok)
+            
 
         if classify is 'DOG':
 
@@ -172,6 +173,8 @@ class LandingPage(QWidget):
             msg.setText(message)
             msg.setStandardButtons(QMessageBox.Ok)
 
+        msg.show()
+
 
 
 
@@ -185,7 +188,9 @@ class LandingPage(QWidget):
         if pathTemp[0] != "":
             
             # Send path to imageClassifier
-            self.classificationNames = tuple(imageClassifier.setFile(pathTemp[0]))
+            tempStr = imageClassifier.setFile(pathTemp[0])
+            tempTuple = (tempStr, " ")
+            self.classificationNames = tempTuple[:1]
             
             # Set the path variable to only the first part of the pathTemp
             self.filePath = (pathTemp[:1])
@@ -210,6 +215,10 @@ class LandingPage(QWidget):
         # Only perform actions if a path was selected
         if self.dirPath != "":
             
+            # Give processing feedback
+            self.image.setText("Classifying... please wait")
+
+
             # Place the list of files in the folder into filePath
             self.filePath = self.fileFilter(self.dirPath)
             
@@ -275,7 +284,7 @@ class LandingPage(QWidget):
     def updateClassification(self):
         
         index = self.currentImgNum - 1
-        self.classificationLabel.setText("Classification: " + self.classificationNames(index))
+        self.classificationLabel.setText("Classification: " + self.classificationNames[index])
         
         # self.classificationLabel.setText("Classification: " + "                        ")
 
