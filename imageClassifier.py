@@ -36,18 +36,9 @@ def setFile(path):
     if prediction == 0:
         print('Cat')
         return "Cat"
-    elif prediction == 1:
-      print('Dog')
-      return "Dog"
-    elif prediction == 2:
-      print('Elephant')
-      return "Elephant"
-    elif prediction == 3:
-      print('Horse')
-      return "Horse"
-    elif prediction == 4:
-      print('Lion')
-      return "Lion"
+    else: 
+        print('Dog')
+        return "Dog"
 
 
 # Method to classify a folder of images
