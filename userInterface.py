@@ -124,7 +124,7 @@ class LandingPage(QWidget):
 
         if classify is 'CAT':
 
-            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\CAT.txt', 'r')
+            info = open('animal_info\\CAT.txt', 'r')
             message = info.read()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
@@ -134,7 +134,7 @@ class LandingPage(QWidget):
 
         if classify is 'DOG':
 
-            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\DOG.txt', 'r')
+            info = open('animal_info\\DOG.txt', 'r')
             message = info.read()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
@@ -144,7 +144,7 @@ class LandingPage(QWidget):
 
         if classify is 'ELEPHANT':
 
-            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\ELEPHANT.txt', 'r')
+            info = open('animal_info\\ELEPHANT.txt', 'r')
             message = info.read()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
@@ -154,7 +154,7 @@ class LandingPage(QWidget):
         
         if classify is 'HORSE':
 
-            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\HORSE.txt', 'r')
+            info = open('animal_info\\HORSE.txt', 'r')
             message = info.read()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
@@ -164,7 +164,7 @@ class LandingPage(QWidget):
 
         if classify is 'LION':
 
-            info = open('C:\Users\kyahm\Desktop\Project 380\CS380Project-1\animal_info\LION.txt', 'r')
+            info = open('animal_info\\LION.txt', 'r')
             message = info.read()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
