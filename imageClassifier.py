@@ -32,7 +32,7 @@ def setFile(path):
     # expand dimension of image
     images = np.expand_dims(images, axis=0)
     # making prediction with model
-    prediction = model.predict(images)
+    prediction = model.predict_classes(images)
     
     # print('Prediction: ')
     
