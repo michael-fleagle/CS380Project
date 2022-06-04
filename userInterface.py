@@ -93,6 +93,24 @@ class LandingPage(QWidget):
         # Text Color
         self.endProcess.setStyleSheet("color: red;")
         self.clearImage.setStyleSheet("color: orange;")
+
+
+        # Create archive file to append if it does not exist
+        if not os.path.exists("Classification_Archive.txt"):
+            with open("Classification_Archive.txt", "a") as file:
+                file.write("Classification")
+                file.write("\t\t")
+                file.write("File Path")
+                file.write("\n\n")
+        # If the file exists, but is empty, create the header
+        else:
+            if os.path.getsize("Classification_Archive.txt") == 0:
+                with open("Classification_Archive.txt", "a") as file:
+                    file.write("Classification")
+                    file.write("\t\t")
+                    file.write("File Path")
+                    file.write("\n\n")
+
     
     # Functions to provide actions to button clicks
     # Method that changes to the next image, image name, classification, and image number
@@ -202,7 +220,7 @@ class LandingPage(QWidget):
             self.updateImgDisplay()
             self.updateImgName()
             self.updateClassification()
-            self.updateArchive()
+            self.updateArchive("single")
 
             # Reminder in console that this is not finished
             print(self.filePath)
@@ -233,6 +251,7 @@ class LandingPage(QWidget):
             self.updateImgDisplay()
             self.updateImgName()
             self.updateClassification()
+            self.updateArchive("folder")
 
             # Reminder in console that this is not finished
             # print(self.filePath)
@@ -259,7 +278,7 @@ class LandingPage(QWidget):
         print("7")
 
     def archiveAction(self):
-        print("8")
+        os.startfile("Classification_Archive.txt")
 
     # Methods to update
     # Image numbers
@@ -290,18 +309,24 @@ class LandingPage(QWidget):
         # self.classificationLabel.setText("Classification: " + "                        ")
 
     # Method to upadate archive
-    def updateArchive(self):
+    def updateArchive(self, mode):
         
-        # variable for index
-        index = self.currentImgNum - 1
-
-        # open the archive file to append to the end of it. 
-        with open("Classification_Archive.txt", "a") as file:
-            file.write(self.classificationNames[index])
-            file.write("\t\t")
-            file.write(self.filePath[index])
-            file.write("\n")
-            
+        # If the method is called from folderUpload, create loop
+        if mode == "single":
+            # open the archive file to append to the end of it. 
+            with open("Classification_Archive.txt", "a") as file:
+                file.write(self.classificationNames[0])
+                file.write("\t\t\t")
+                file.write(self.filePath[0])
+                file.write("\n")
+        else:
+            # Loop through classification names
+            for i in range(len(self.classificationNames)):
+                with open("Classification_Archive.txt", "a") as file:
+                    file.write(self.classificationNames[i])
+                    file.write("\t\t\t")
+                    file.write(self.dirPath + "/" + self.filePath[i])
+                    file.write("\n")
     
     # Method to filter out non png and jpg files from directory
     def fileFilter(self, path):

@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 # model.save('model')
 
 # Change 'model' to the exact filepath where your model is saved
-model = tf.keras.models.load_model("C:\\Users\\thund\\OneDrive - Central Washington University\\Spring 2022\\CS 380\\CS380Project\model_ 0.775")
+model = tf.keras.models.load_model("C:\\Users\\thund\\OneDrive - Central Washington University\\Spring 2022\\CS 380\\CS380Project\\models\\model_ 0.900")
 
 # Variable for setFile to check to continue
 continueClassification = True
