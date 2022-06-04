@@ -188,9 +188,9 @@ class LandingPage(QWidget):
         if pathTemp[0] != "":
             
             # Send path to imageClassifier
-            tempStr = imageClassifier.setFile(pathTemp[0])
-            tempTuple = (tempStr, " ")
-            self.classificationNames = tempTuple[:1]
+            # Place the classification into a tuple for classificationNames
+            temp = ((imageClassifier.setFile(pathTemp[0])), "")
+            self.classificationNames = temp[:1]
             
             # Set the path variable to only the first part of the pathTemp
             self.filePath = (pathTemp[:1])
@@ -202,6 +202,7 @@ class LandingPage(QWidget):
             self.updateImgDisplay()
             self.updateImgName()
             self.updateClassification()
+            self.updateArchive()
 
             # Reminder in console that this is not finished
             print(self.filePath)
@@ -288,6 +289,20 @@ class LandingPage(QWidget):
         
         # self.classificationLabel.setText("Classification: " + "                        ")
 
+    # Method to upadate archive
+    def updateArchive(self):
+        
+        # variable for index
+        index = self.currentImgNum - 1
+
+        # open the archive file to append to the end of it. 
+        with open("Classification_Archive.txt", "a") as file:
+            file.write(self.classificationNames[index])
+            file.write("\t\t")
+            file.write(self.filePath[index])
+            file.write("\n")
+            
+    
     # Method to filter out non png and jpg files from directory
     def fileFilter(self, path):
         allFiles = os.listdir(path)
