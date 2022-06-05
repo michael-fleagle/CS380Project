@@ -138,9 +138,10 @@ class LandingPage(QWidget):
     # Method to provide more info
     def infoButtonAction(self):
 
-        classify = 'CAT'
+        index = self.currentImgNum - 1
+        classify = (self.classificationNames[index])
 
-        if classify is 'CAT':
+        if classify is 'Cat':
 
             info = open('animal_info\\CAT.txt', 'r')
             message = info.read()
@@ -149,9 +150,10 @@ class LandingPage(QWidget):
             msg.setWindowTitle("More Information on Cats")
             msg.setText(message)
             msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
             
 
-        if classify is 'DOG':
+        if classify is 'Dog':
 
             info = open('animal_info\\DOG.txt', 'r')
             message = info.read()
@@ -160,8 +162,9 @@ class LandingPage(QWidget):
             msg.setWindowTitle("More Information on Dogs")
             msg.setText(message)
             msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
 
-        if classify is 'ELEPHANT':
+        if classify is 'Elephant':
 
             info = open('animal_info\\ELEPHANT.txt', 'r')
             message = info.read()
@@ -170,8 +173,9 @@ class LandingPage(QWidget):
             msg.setWindowTitle("More Information on Elephants")
             msg.setText(message)
             msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
         
-        if classify is 'HORSE':
+        if classify is 'Horse':
 
             info = open('animal_info\\HORSE.txt', 'r')
             message = info.read()
@@ -180,8 +184,9 @@ class LandingPage(QWidget):
             msg.setWindowTitle("More Information on Horses")
             msg.setText(message)
             msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
 
-        if classify is 'LION':
+        if classify is 'Lion':
 
             info = open('animal_info\\LION.txt', 'r')
             message = info.read()
@@ -190,8 +195,8 @@ class LandingPage(QWidget):
             msg.setWindowTitle("More Information on Lions")
             msg.setText(message)
             msg.setStandardButtons(QMessageBox.Ok)
-
-        msg.show()
+            msg.exec_()
+        # msg.show()
 
 
 
