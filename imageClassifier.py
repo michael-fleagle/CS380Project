@@ -34,24 +34,15 @@ def setFile(path):
     # making prediction with model
     prediction = model.predict_classes(images)
     
-    # print('Prediction: ')
-    
-    # print(prediction)
-    
     if prediction == 3:
-        print('Cat')
         return "Cat"
     elif prediction == 4:
-      print('Dog')
       return "Dog"
     elif prediction == 0:
-      print('Elephant')
       return "Elephant"
     elif prediction == 1:
-      print('Horse')
       return "Horse"
     elif prediction == 2:
-      print('Lion')
       return "Lion"
     else:
       return "ERROR"
