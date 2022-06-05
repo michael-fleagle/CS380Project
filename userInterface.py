@@ -149,7 +149,7 @@ class LandingPage(QWidget):
             msg.setIcon(QMessageBox.Information)
             msg.setWindowTitle("More Information on Cats")
             msg.setText(message)
-            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setStandardButtons(QMessageBox.Close)
             msg.exec_()
             
 
@@ -161,7 +161,7 @@ class LandingPage(QWidget):
             msg.setIcon(QMessageBox.Information)
             msg.setWindowTitle("More Information on Dogs")
             msg.setText(message)
-            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setStandardButtons(QMessageBox.Close)
             msg.exec_()
 
         if classify is 'Elephant':
@@ -172,7 +172,7 @@ class LandingPage(QWidget):
             msg.setIcon(QMessageBox.Information)
             msg.setWindowTitle("More Information on Elephants")
             msg.setText(message)
-            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setStandardButtons(QMessageBox.Close)
             msg.exec_()
         
         if classify is 'Horse':
@@ -183,7 +183,7 @@ class LandingPage(QWidget):
             msg.setIcon(QMessageBox.Information)
             msg.setWindowTitle("More Information on Horses")
             msg.setText(message)
-            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setStandardButtons(QMessageBox.Close)
             msg.exec_()
 
         if classify is 'Lion':
@@ -194,7 +194,7 @@ class LandingPage(QWidget):
             msg.setIcon(QMessageBox.Information)
             msg.setWindowTitle("More Information on Lions")
             msg.setText(message)
-            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setStandardButtons(QMessageBox.Close)
             msg.exec_()
         # msg.show()
 
