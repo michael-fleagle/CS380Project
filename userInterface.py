@@ -321,7 +321,7 @@ class LandingPage(QWidget):
             # open the archive file to append to the end of it. 
             with open("Classification_Archive.txt", "a") as file:
                 file.write(self.classificationNames[0])
-                file.write("\t\t\t")
+                file.write("\t\t\t\t")
                 file.write(self.filePath[0])
                 file.write("\n")
         else:
@@ -329,7 +329,7 @@ class LandingPage(QWidget):
             for i in range(len(self.classificationNames)):
                 with open("Classification_Archive.txt", "a") as file:
                     file.write(self.classificationNames[i])
-                    file.write("\t\t\t")
+                    file.write("\t\t\t\t")
                     file.write(self.dirPath + "/" + self.filePath[i])
                     file.write("\n")
     
